@@ -1,4 +1,4 @@
-define("something", 
+define("renamed", 
   ["ember"],
   function(__dependency1__) {
     "use strict";
