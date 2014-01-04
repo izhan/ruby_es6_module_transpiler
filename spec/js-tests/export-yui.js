@@ -1,6 +1,4 @@
-define(
-  ["exports"],
-  function(__exports__) {
+YUI.add("@NAME@", function(Y, NAME, __imports__, __exports__) {
     "use strict";
     var get = function(obj, key) {
       return obj[key];
@@ -13,4 +11,5 @@ define(
 
     __exports__.get = get;
     __exports__.set = set;
-  });
+    return __exports__;
+}, "@VERSION@", {"es":true,"requires":[]});
