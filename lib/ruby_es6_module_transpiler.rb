@@ -1,4 +1,5 @@
 require 'execjs'
+require 'json'
 
 module ES6ModuleTranspiler
   class << self
@@ -33,7 +34,7 @@ module ES6ModuleTranspiler
         source = <<-SOURCE
           var Compiler, compiler, output;
           Compiler = require("#{transpiler_js_path}").Compiler;
-          compiler = new Compiler("#{@js_code}");
+          compiler = new Compiler(#{::JSON.generate(@js_code, quirks_mode: true)});
           return output = compiler.to#{type}();
         SOURCE
       end
