@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe RubyES6ModuleTranspiler do
-  let(:input) { read_file("import-es6.js") }
+  let(:input) { read_file("default-es6.js") }
 
   describe "for case sensitive cases" do
     it "should not care whether AMD is capitalized or not" do
