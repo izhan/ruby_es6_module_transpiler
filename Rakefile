@@ -1,11 +1,8 @@
 require "bundler/gem_tasks"
 
-
-require 'rake/testtask'
-
-Rake::TestTask.new do |t|
-  t.libs << 'test'
+desc "run tests"
+task :spec do
+  sh "rspec spec"
 end
 
-desc "Run tests"
-task :default => :test
+task :default => :spec
