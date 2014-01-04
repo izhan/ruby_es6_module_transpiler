@@ -29,7 +29,7 @@ module RubyES6ModuleTranspiler
         source = <<-SOURCE
           var Compiler, compiler, output;
           Compiler = require("#{transpiler_js_path}").Compiler;
-          compiler = new Compiler(#{::JSON.generate(@js_code, quirks_mode: true)});
+          compiler = new Compiler(#{::JSON.generate(@js_code, quirks_mode: true)}, '#{module_name(options)}');
           return output = compiler.#{compiler_method(options)}();
         SOURCE
       end
@@ -48,7 +48,7 @@ module RubyES6ModuleTranspiler
           yui: 'YUI',
           globals: 'Globals'
         }
-        
+
         if options[:method]
           method = available_methods[options[:method].downcase.to_sym] || 'AMD'
         else
@@ -56,6 +56,10 @@ module RubyES6ModuleTranspiler
         end
 
         "to#{method}"
+      end
+
+      def module_name(options)
+        options[:module_name]
       end
   end
 end

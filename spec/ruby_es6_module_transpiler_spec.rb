@@ -2,13 +2,22 @@ require 'spec_helper'
 describe RubyES6ModuleTranspiler do
   let(:input) { read_file("import-es6.js") }
 
-  describe "case sensitive options" do
+  describe "for case sensitive cases" do
     it "should not care whether AMD is capitalized or not" do
       expect{ RubyES6ModuleTranspiler.transpile(input, { method: "Amd"}) }.to_not raise_error
     end
   end
-  
+
+  describe "for passing in optional parameters" do
+    it "should allow for specifying module names" do
+      transpiled_file = RubyES6ModuleTranspiler.transpile(input, { method: "AMD", module_name: "something" })
+      expected = read_file("default-amd-name.js")
+      expect(transpiled_file).to eq(expected)
+    end
+  end
+
   describe "for importing es6" do
+    let(:input) { read_file("import-es6.js") }
     it "should default to amd" do
       transpiled_file = RubyES6ModuleTranspiler.transpile(input)
       expected = read_file("import-amd.js")
