@@ -13,13 +13,7 @@ module RubyES6ModuleTranspiler
       runner_path: File.expand_path('../support/es6-node-runner.js', __FILE__),
       encoding: 'UTF-8'
     )
-
-    def test
-      a = "import { get, set } from 'ember';"
-      re = transpile(a)
-      re
-    end
-
+    
     # accepts amd, cjs, yui, or global.  defaults to amd.
     def transpile(code, options = {})
       @js_code = code
