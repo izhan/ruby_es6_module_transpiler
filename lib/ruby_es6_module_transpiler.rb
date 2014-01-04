@@ -26,12 +26,11 @@ module RubyES6ModuleTranspiler
       end
 
       def generate_source(options)
-        type = options[:type] || :AMD
         source = <<-SOURCE
           var Compiler, compiler, output;
           Compiler = require("#{transpiler_js_path}").Compiler;
           compiler = new Compiler(#{::JSON.generate(@js_code, quirks_mode: true)});
-          return output = compiler.to#{type}();
+          return output = compiler.#{compiler_method(options)}();
         SOURCE
       end
 
@@ -40,6 +39,23 @@ module RubyES6ModuleTranspiler
         data = file.read
         file.close
         data
+      end
+
+      def compiler_method(options)
+        available_methods = {
+          amd: 'AMD',
+          cjs: 'CJS',
+          yui: 'YUI',
+          globals: 'Globals'
+        }
+        
+        if options[:method]
+          method = available_methods[options[:method].downcase.to_sym] || 'AMD'
+        else
+          method = 'AMD'
+        end
+
+        "to#{method}"
       end
   end
 end
