@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'ruby_es6_module_transpiler'
 
-class ES6ModuleTranspilerTest < Test::Unit::TestCase
+class RubyES6ModuleTranspilerTest < Test::Unit::TestCase
   def test_default
-    ES6ModuleTranspiler.test
+    RubyES6ModuleTranspiler.test
   end
 
   # def test_amd

@@ -1,7 +1,9 @@
+require "ruby_es6_module_transpiler/version"
+
 require 'execjs'
 require 'json'
 
-module ES6ModuleTranspiler
+module RubyES6ModuleTranspiler
   class << self
     attr_accessor :js_code
 
