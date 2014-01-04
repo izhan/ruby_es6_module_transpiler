@@ -1,4 +1,4 @@
-ruby-es6-module-transpiler
+ruby_es6_module_transpiler
 ==========================
 
 ES6 Module Transpiler Ruby Gem
