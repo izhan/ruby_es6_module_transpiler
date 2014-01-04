@@ -1,1 +1,1 @@
-import { get, set } from "ember";
+import { get, set } from 'ember';

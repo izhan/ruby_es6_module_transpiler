@@ -1,7 +1,7 @@
 define(
-  ["exports"],
+  ['exports'],
   function(__exports__) {
-    "use strict";
+    'use strict';
     var get = function(obj, key) {
       return obj[key];
     };

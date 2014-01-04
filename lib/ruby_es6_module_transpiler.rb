@@ -1,7 +1,7 @@
 require 'execjs'
 
 module ES6ModuleTranspiler
-  class Transpiler
+  class << self
     attr_accessor :js_code
 
     Node = ::ExecJS::ExternalRuntime.new(
@@ -11,16 +11,15 @@ module ES6ModuleTranspiler
       encoding: 'UTF-8'
     )
 
-    def initalize(js_code)
-      @js_code = js_code
+    def test
+      a = "import { get, set } from 'ember';"
+      re = transpile(a)
+      re
     end
 
-    def test
-      @js_code = "import { get, set } from 'ember';"
-      puts self.toAMD
-    end
-  
-    def toAMD
+    # accepts amd, cjs, yui, or global
+    def transpile(code, target = :AMD, options = {})
+      @js_code = code
       Node.exec(generate_source(:AMD))
     end
 
