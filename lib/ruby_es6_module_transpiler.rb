@@ -17,10 +17,10 @@ module ES6ModuleTranspiler
       re
     end
 
-    # accepts amd, cjs, yui, or global
-    def transpile(code, target = :AMD, options = {})
+    # accepts amd, cjs, yui, or global.  defaults to amd.
+    def transpile(code, options = {})
       @js_code = code
-      Node.exec(generate_source(:AMD))
+      Node.exec(generate_source(options))
     end
 
     private
@@ -28,7 +28,8 @@ module ES6ModuleTranspiler
         File.expand_path('../support/es6-module-transpiler.js', __FILE__)
       end
 
-      def generate_source(type)
+      def generate_source(options)
+        type = options[:type] || :AMD
         source = <<-SOURCE
           var Compiler, compiler, output;
           Compiler = require("#{transpiler_js_path}").Compiler;
