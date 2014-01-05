@@ -22,7 +22,7 @@ module RubyES6ModuleTranspiler
 
     private
       def transpiler_js_path
-        File.expand_path('../support/es6-module-transpiler.js', __FILE__)
+        File.expand_path('../support/es6-module-transpiler.min.js', __FILE__)
       end
 
       def generate_source(options)
@@ -35,7 +35,7 @@ module RubyES6ModuleTranspiler
       end
 
       def read_js_file(path)
-        file = File.open(transpiler_js_path, "rb")
+        file = File.open(path, "rb")
         data = file.read
         file.close
         data
