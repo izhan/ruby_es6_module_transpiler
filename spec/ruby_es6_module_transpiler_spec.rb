@@ -25,6 +25,7 @@ describe RubyES6ModuleTranspiler do
 
   describe "for importing es6" do
     let(:input) { read_file("import-es6.js") }
+    
     it "should default to amd" do
       transpiled_file = RubyES6ModuleTranspiler.transpile(input)
       expected = read_file("import-amd.js")
@@ -52,6 +53,7 @@ describe RubyES6ModuleTranspiler do
 
   describe "for exporting es6" do
     let(:input) { read_file("export-es6.js") }
+
     it "should default to amd" do
       transpiled_file = RubyES6ModuleTranspiler.transpile(input)
       expected = read_file("export-amd.js")

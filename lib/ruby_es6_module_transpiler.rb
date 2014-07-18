@@ -1,12 +1,17 @@
 require "ruby_es6_module_transpiler/version"
-
 require 'execjs'
 require 'json'
 
+# Convert JavaScript files written using the ES6 draft specification
+# module syntax to existing library-based module systems such as AMD, 
+# CommonJS, or simply globals.  Based off of Square's ES6 Module
+# Transpiler project
 module RubyES6ModuleTranspiler
   class << self
+    # JS code to be transpiled
     attr_accessor :js_code
 
+    # ExecJS object used to execute Javascript within Ruby
     Node = ::ExecJS::ExternalRuntime.new(
       name: 'Node.js (V8)',
       command: ['nodejs', 'node'],
@@ -14,7 +19,13 @@ module RubyES6ModuleTranspiler
       encoding: 'UTF-8'
     )
     
-    # accepts amd, cjs, yui, or global.  defaults to amd.
+    # Transpiles given JS code into library-based module systems.
+    # Defaults to AMD.  Also allows optional parameters typically passed
+    # to Square's ES6 Transpiler in options hash.
+    #
+    # @param code [String] the Javscript code to be transpiled
+    # @option opts [String] :type specify whether to transpile into AMD, CommonJS or globals
+    # @option opts [String] :module_name overriding default module name
     def transpile(code, options = {})
       @js_code = code
       Node.exec(generate_source(options))
