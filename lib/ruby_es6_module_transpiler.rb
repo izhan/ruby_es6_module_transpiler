@@ -26,6 +26,7 @@ module RubyES6ModuleTranspiler
     # @param code [String] the Javscript code to be transpiled
     # @option opts [String] :type specify whether to transpile into AMD, CommonJS or globals
     # @option opts [String] :module_name overriding default module name
+    # @return [String] transpiled verison of input Javscript
     def transpile(code, options = {})
       @js_code = code
       Node.exec(generate_source(options))
