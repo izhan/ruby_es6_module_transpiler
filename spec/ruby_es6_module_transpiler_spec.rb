@@ -8,6 +8,12 @@ describe RubyES6ModuleTranspiler do
     end
   end
 
+  describe "for non-JS" do
+    it "should not raise an error" do
+      expect{ RubyES6ModuleTranspiler.transpile('mumbojumbo') }.to_not raise_error
+    end
+  end
+
   describe "for passing in optional parameters" do
     it "should allow for specifying module names" do
       transpiled_file = RubyES6ModuleTranspiler.transpile(input, { type: "AMD", moduleName: "renamed" })
@@ -25,7 +31,7 @@ describe RubyES6ModuleTranspiler do
 
   describe "for importing es6" do
     let(:input) { read_file("import-es6.js") }
-    
+
     it "should default to amd" do
       transpiled_file = RubyES6ModuleTranspiler.transpile(input)
       expected = read_file("import-amd.js")
